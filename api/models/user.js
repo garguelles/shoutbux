@@ -7,8 +7,14 @@ let Schema = mongoose.Schema;
 let UserSchema = new Schema({
   firstName: String,
   lastName: String,
-  email: String,
-  username: String,
+  email: {
+    type: String,
+    unique: true
+  },
+  username: {
+    type: String,
+    unique: true
+  },
   password: String,
   passwordSalt: String
 });
@@ -36,9 +42,9 @@ UserSchema.statics.authenticate = function (params) {
           if (result) {
             resolve(user);
           }
-         else {
+          else {
             reject("Invalid Credentials");
-         }
+          }
 
         }).catch(function(err) {
           reject(err);

@@ -1,7 +1,7 @@
 "use strict";
 
 let authController = require('../api/controllers/auth-controller');
-let testController = require('../api/controllers/test-controller.js');
+let testController = require('../api/controllers/test-controller');
 let pagesController = require('../controllers/pages-controller')
 
 class RoutesInitializer {
