@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    title 
+      =pageTitle
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="shortcut icon", type="image/x-icon", href="images/favicon.ico")
+    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/css?family=Roboto")
+    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/css?family=Roboto+Slab")
+    link(rel="stylesheet", type="text/css", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css")
+    link(rel="stylesheet", type="text/css", media="screen", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/css/core.css")
+  body
+    .main-container
+      block content
+
+    #modal.modal.fade.modal-press(tabindex='-1', role='dialog')
+      .modal-dialog
+        .modal-content
+          .modal-body
+            button.close.pull-right(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            .row
+              .col-md-9.col-sm-9
+                img.modal-image-preview.img-responsive(src='http://placehold.it/750x500', alt='')
+              .col-md-3.col-sm-3
+                .press-desc
+
+    block page_scripts
+
+    script(src="js/Shoutbox.js")
+
