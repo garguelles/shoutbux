@@ -1,6 +1,7 @@
 "use strict";
 
 let authController = require('../api/controllers/auth-controller');
+let testController = require('../api/controllers/test-controller.js');
 let pagesController = require('../controllers/pages-controller')
 
 class RoutesInitializer {
@@ -22,6 +23,7 @@ class RoutesInitializer {
    */
   registerAPIRoutes() {
     this.app.use('/auth', authController);
+    this.app.use('/test', testController);
     return this;
   }
 

@@ -13,17 +13,16 @@ let UserSchema = new Schema({
   passwordSalt: String
 });
 
-/**
- *
+/*
  * @Description: Authenticates user based on username and hashed password
  * @Param: { credentials:object }
  * @Return: Promise
  *
- **/
+ */
 UserSchema.statics.authenticate = function (params) {
 
   return new Promise((resolve, reject) => {
-    this.findOne({ username: params.username }, function (err, user) {
+    this.findOne({ username: params.username }).lean().exec(function (err, user) {
       if (err) {
         reject(err, null);
       }

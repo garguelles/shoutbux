@@ -1,17 +1,37 @@
 "use strict";
 
-request = require('supertest');
+let request = require('supertest');
+let should = require('should')
 
 describe('Authentication', function (done) {
   let server = {};
   let token = '';
 
   beforeEach(function () {
-    delete require.cache[require.resolve('../../bin/www')]
+    delete require.cache[require.resolve('../../bin/www')];
+    server = require('../../bin/www');
   });
 
-  afterEach(function (done) { server.close(done) });
+  afterEach(function (done) {
+    server.close(done)
+  });
+
+  it('responds to /test', function (done) {
+    request(server)
+      .get('/test')
+      .set('Content-Type', 'application/json')
+      .expect(200)
+      .expect(function(response) {
+        response.body.should.have.property('test');
+      })
+      .expect('Content-Type', /json/)
+      .end(function (err, response) {
+        if (err) return done(err)
+        done();
+      });
+  });
 });
+
 /*
 describe 'Authentication', ->
   server = {}
