@@ -1,5 +1,16 @@
 'use strict';
 
+/*
+ * load proper env file
+ * test or development
+ */
+if (!(process.env.NODE_ENV == 'production')) {
+  if (process.env.NODE_ENV == 'test')
+    require('dotenv').config({path: './config/env/.env.test'});
+  else
+    require('dotenv').config({path: './config/env/.env'});
+}
+
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');

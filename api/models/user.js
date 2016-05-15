@@ -38,7 +38,6 @@ UserSchema.statics.authenticate = function (params) {
           params.password,
           user.password
         ).then(function(result) {
-
           if (result) {
             resolve(user);
           }

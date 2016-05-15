@@ -3,25 +3,13 @@
 let express = require('express');
 let testController = express.Router();
 let User = require('../models/user');
+let tokenVerifier = require('../middlewares/token-verifier');
 
 testController.get('/', function (request, response) {
-  /*let user = new User({
-    firstName: 'gerard',
-    lastName: 'arguelles',
-    email: 'gerard@shoutbux.com',
-    username: 'gerard@shoutbux.com',
-    password: 'password'
-  });
+  response.status(200).json({ test: 'ok' });
+});
 
-  user.save()
-
-    .then(function () {
-      response.status(200).json({ test: 'ok' });
-    })
-
-    .catch(function (err) {
-      response.status(422).json({ error: err });
-    });*/
+testController.get('/protected', tokenVerifier, function (request, response) {
   response.status(200).json({ test: 'ok' });
 });
 
