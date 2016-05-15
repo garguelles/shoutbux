@@ -30,20 +30,57 @@ describe('Authentication', function (done) {
         done();
       });
   });
+
+  it('responds to /auth/token', function (done) {
+    request(server)
+      .post('/auth/token')
+      .set('Content-Type', 'application/json')
+      .set('Accept', /application\/json/)
+      .send({
+        "username": "gerard@shoutbux.com",
+        "password": "password"
+      })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect(function (res) {
+        res.body.should.be.an.Object;
+        res.body.should.have.property('token');
+        token = res.body.token;
+      })
+      .end(function(err, res) {
+        if (err) return done(err)
+        done();
+      })
+  });
+
+  it('[with token] allow access to protected endpoints - GET /protected', function (done) {
+    request(server)
+      .get('/test/protected')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', token)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function (err, response) {
+        if (err) return done(err)
+        done();
+      });
+  });
+
+  it('[without token] restrict access to protected endpoints - GET /protected', function (done) {
+    request(server)
+      .get('/test/protected')
+      .set('Content-Type', 'application/json')
+      .expect(403)
+      .expect('Content-Type', /json/)
+      .end(function (err, response) {
+        if (err) return done(err)
+        done();
+      });
+  });
+
 });
 
 /*
-describe 'Authentication', ->
-  server = {}
-  token = ""
-
-  beforeEach ->
-    @timeout 5000
-    delete require.cache[require.resolve('../../bin/www')]
-    server = require('../../bin/www')
-
-  afterEach (done) ->
-    server.close(done)
 
   it 'reponds to /auth/token', (done) ->
     @timeout 5000

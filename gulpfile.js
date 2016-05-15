@@ -1,6 +1,16 @@
 'use strict';
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production')
-  require('dotenv').load();
+
+
+/*
+ * load proper env file
+ *
+ */
+if (!(process.env.NODE_ENV == 'production')) {
+  if (process.env.NODE_ENV == 'test')
+    require('dotenv').config({path: './config/env/.env.test'});
+  else
+    require('dotenv').config({path: './config/env/.env'});
+}
 
 var gulp = require('gulp');
 var path = require('path');

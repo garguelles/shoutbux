@@ -1,0 +1,4 @@
+{
+	"test": "mongodb://localhost:27017/shoutbox-test",
+	"development": "mongodb://localhost:27017/shoutbox-dev"
+}
