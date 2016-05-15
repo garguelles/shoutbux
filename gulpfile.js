@@ -47,13 +47,6 @@ gulp.task('scripts', function() {
     .pipe($.size({ title : 'js' }));
 });
 
-/*gulp.task('html', function() {
-  return gulp.src(src + 'index.html')
-    .pipe(gulp.dest(dist))
-    .pipe($.size({ title : 'html' }))
-    .pipe($.connect.reload());
-});*/
-
 gulp.task('styles',function(cb) {
   return gulp.src(src + 'styles/core.styl')
     .pipe($.stylus({
