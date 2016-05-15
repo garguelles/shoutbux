@@ -2,7 +2,7 @@ import plugins from './plugins';
 import Application from './application/application';
 import HeaderService from './features/header/service';
 import IndexRouter from './features/index/router';
-// todo create router
+
 
 const app = new Application();
 

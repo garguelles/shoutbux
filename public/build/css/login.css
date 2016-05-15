@@ -1,0 +1,16 @@
+.login-form {
+  width: 30%;
+  height: 200px;
+  padding: 8px;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  top: 50%;
+  margin-top: -180px;
+  position: absolute;
+  visibility: hidden;
+}
+.login-form #loginButton {
+  min-width: 90px;
+  text-align: center;
+}

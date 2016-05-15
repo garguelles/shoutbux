@@ -70,6 +70,22 @@ gulp.task('styles:shoutbox', function(cb) {
     .pipe($.size({ title: 'css' }));
 })
 
+gulp.task('styles:login', function(cb) {
+
+  let source = `${src}styles/login.styl`;
+  let destination = `${dist}css/`;
+
+  return gulp.src(source)
+    .pipe($.stylus({
+      compress: isProduction,
+      'include css': true
+    }))
+    .pipe($.autoprefixer({ browsers: autoprefixerBrowsers }))
+    .pipe(gulp.dest(destination))
+    .pipe($.size({ title: 'css' }));
+})
+
+
 gulp.task('serve', function() {
   $.nodemon({
     script: './bin/www',
@@ -86,7 +102,7 @@ gulp.task('static', function(cb) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(src + 'styles/**/*.styl', ['styles', 'styles:shoutbox']);
+  gulp.watch(src + 'styles/**/*.styl', ['styles', 'styles:shoutbox', 'styles:login']);
   //gulp.watch(src + 'index.html', ['html']);
   gulp.watch(src + 'apps/**/*.js', ['scripts']);
   gulp.watch(src + 'apps/**/*.jade', ['scripts']);
@@ -101,7 +117,7 @@ gulp.task('default', ['build', 'serve', 'watch']);
 
 // waits until clean is finished then builds the project
 gulp.task('build', ['clean'], function() {
-  gulp.start(['static','scripts','styles', 'styles:shoutbox']);
+  gulp.start(['static','scripts','styles', 'styles:shoutbox', 'styles:login']);
 });
 
 // seed

@@ -13,7 +13,7 @@ class LoginModel {
 
       if (!this._isValid()) return reject({ errorMessage: 'Invalid Credentials' });
 
-      $.post('/v1/auth/token', this.toObject()).then((response) => {
+      $.post('/auth/token', this.toObject()).then((response) => {
         resolve(response);
       }).fail((xhr, textStatus, errorThrown) => {
         reject(xhr);
@@ -36,29 +36,36 @@ class LoginModel {
 export default (() => {
 
   // check if accessToken exists
-  // login form is not show by default check access token first
   // if none exists show form
   if (localStorage.getItem('accessToken'))
-    window.location.href = '/admin';
+    window.location.href = '/';
   else
     $('.login-form').css('visibility', 'visible');
 
-  $('#loginButton').click( (ev) => {
+  let alert = $('.alert-danger');
+  let loginLabel = $('span.login');
+  let spinner = $('.fa-spin')
 
+  $('#loginButton').click( (ev) => {
+    let $target = $(ev.target);
     let username = $('[name="username"]').val();
     let password = $('[name="password"]').val();
-
     let loginModel = new LoginModel({ username , password });
+
+    loginLabel.addClass('hidden');
+    spinner.removeClass('hidden');
+
 
     loginModel.authenticate()
       .then((response) => {
         localStorage.setItem('accessToken', response.token);
-        window.location.href = '/admin';
+        window.location.href = '/';
       })
       .catch((error) => {
-        console.log(error);
+        alert.removeClass('hidden').html(error.errorMessage);
+        loginLabel.removeClass('hidden');
+        spinner.addClass('hidden');
       });
-
   });
 
 })();
