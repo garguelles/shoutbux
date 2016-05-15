@@ -13,7 +13,7 @@ class LoginModel {
 
       if (!this._isValid()) return reject({ errorMessage: 'Invalid Credentials' });
 
-      $.post('/v1/auth/token', this.toObject()).then((response) => {
+      $.post('/auth/token', this.toObject()).then((response) => {
         resolve(response);
       }).fail((xhr, textStatus, errorThrown) => {
         reject(xhr);
@@ -43,20 +43,28 @@ export default (() => {
     $('.login-form').css('visibility', 'visible');
 
   let alert = $('.alert-danger');
+  let loginLabel = $('span.login');
+  let spinner = $('.fa-spin')
 
   $('#loginButton').click( (ev) => {
+    let $target = $(ev.target);
     let username = $('[name="username"]').val();
     let password = $('[name="password"]').val();
-
     let loginModel = new LoginModel({ username , password });
+
+    loginLabel.addClass('hidden');
+    spinner.removeClass('hidden');
+
 
     loginModel.authenticate()
       .then((response) => {
         localStorage.setItem('accessToken', response.token);
-        window.location.href = '/admin';
+        window.location.href = '/';
       })
       .catch((error) => {
         alert.removeClass('hidden').html(error.errorMessage);
+        loginLabel.removeClass('hidden');
+        spinner.addClass('hidden');
       });
   });
 

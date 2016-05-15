@@ -9,6 +9,12 @@ const routerChannel = Radio.channel('router');
 const App = Application.extend({
 
   initialize() {
+
+    if (!localStorage.getItem('accessToken')) {
+      window.location.replace('/login');
+      return;
+    }
+
     this.body = $('body');
     this.layout = new LayoutView();
     this.layout.render();
