@@ -1,6 +1,5 @@
 'use strict';
 
-
 /*
  * load proper env file
  *
