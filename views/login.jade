@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    title Administrator
+    
+    link(rel="stylesheet", type="text/css", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css")
+    link(rel="stylesheet", type="text/css", media="screen", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", media="screen", href="/css/login.css")
+      
+  body
+    form.login-form
+      h3.title
+        | Shoutbux Login
+      .form-group
+        label(for="username") Username
+        input.form-control(type="text", placeholder="username", name="username", id="username")
+
+      .form-group
+        label(for="password") Password
+        input.form-control(type="password", placeholder="password", name="password", id="password")
+
+      .form-group
+        .alert.hidden.alert-danger(role="alert")
+
+      button.btn.btn-default.pull-right(type="button", id="loginButton") Login
+
+    
+    script(src="/js/Login.js")

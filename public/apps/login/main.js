@@ -36,15 +36,15 @@ class LoginModel {
 export default (() => {
 
   // check if accessToken exists
-  // login form is not show by default check access token first
   // if none exists show form
   if (localStorage.getItem('accessToken'))
-    window.location.href = '/admin';
+    window.location.href = '/';
   else
     $('.login-form').css('visibility', 'visible');
 
-  $('#loginButton').click( (ev) => {
+  let alert = $('.alert-danger');
 
+  $('#loginButton').click( (ev) => {
     let username = $('[name="username"]').val();
     let password = $('[name="password"]').val();
 
@@ -56,9 +56,8 @@ export default (() => {
         window.location.href = '/admin';
       })
       .catch((error) => {
-        console.log(error);
+        alert.removeClass('hidden').html(error.errorMessage);
       });
-
   });
 
 })();
