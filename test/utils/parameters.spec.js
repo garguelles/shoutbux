@@ -10,9 +10,9 @@ describe('Parameters', function (done) {
   it('removes un-permitted parameters', (done) => {
     let result = parameters.permit(params, ['body']);
     result.should.not.have.property('something');
-    result.should.not.have.property('udatedAt');
+    result.should.not.have.property('updatedAt');
     result.should.have.property('body');
     done();
   });
-  
+
 })
