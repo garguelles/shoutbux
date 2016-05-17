@@ -7,7 +7,7 @@ let ShoutSchema = new Schema({
   body: {
     type: String,
     required: true,
-    maxLength: 34
+    maxlength: [34, 'shout cannot exceed 34 characters']
   },
   userId: {
     type: Schema.Types.ObjectId,

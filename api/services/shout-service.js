@@ -16,15 +16,45 @@ class ShoutService extends Service {
 
   /*
    * create shout
+   * @param {object} params - shout object
+   * @param {function} callback - callback method
    */
   create(params, callback) {
+    params = _.merge(params, { userId: this.currentUser._id });
     let shout = new Shout(params);
-    shout.userId = this.currentUser._id; // shout owner
     shout.save((err, doc, rowsAffected) => {
       if (err) {
         callback(err, null);
         return;
       }
+      callback(null, doc);
+    });
+  }
+
+  /*
+   * update shout
+   * @param {object} params - shout object
+   * @param {string} id - shout object id
+   * @param {function} callback - callback method
+   */
+  update(params, id, callback) {
+    Shout.findOneAndUpdate({
+      _id: id,
+      userId: this.currentUser._id
+    }, params, { runValidators: true }, (err, doc) => {
+      if (err) return callback(err, null);
+      callback(null, doc);
+    });
+  }
+
+  /*
+   * delete shout
+   * @param {string} id - shout object id
+   * @param {function} callback - callback method
+   */
+  delete(id, callback) {
+    Shout.findOneAndRemove({ _id: id }, function (err, doc) {
+      if (err) return callback(err, null);
       callback(null, doc);
     });
   }

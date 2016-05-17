@@ -21,7 +21,6 @@ let authService = {
 
   _sanitize(user) {
     delete user.password;
-    delete user._id;
     delete user.passwordSalt;
     return user;
   }
