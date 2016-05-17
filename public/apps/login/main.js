@@ -62,7 +62,15 @@ export default (() => {
         window.location.href = '/';
       })
       .catch((error) => {
-        alert.removeClass('hidden').html(error.errorMessage);
+        let msg = '';
+
+        if (error.responseText) {
+          msg = JSON.parse(error.responseText).errorMessage;
+        } else {
+          msg = error.errorMessage;
+        }
+
+        alert.removeClass('hidden').html(msg);
         loginLabel.removeClass('hidden');
         spinner.addClass('hidden');
       });

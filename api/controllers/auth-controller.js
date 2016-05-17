@@ -5,7 +5,7 @@ let authController = express.Router();
 let AuthService = require('../services/auth-service');
 
 /*
- * POST /v1/auth/token
+ * POST /auth/token
  */
 authController.post('/token', function (request, response) {
   AuthService.createAccessToken({
