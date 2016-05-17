@@ -18,5 +18,5 @@ let ShoutSchema = new Schema({
   timestamps: true
 });
 
-let ShoutModel = mongoose.Model('Shout', ShoutSchema);
+let ShoutModel = mongoose.model('Shout', ShoutSchema);
 module.exports = ShoutModel;
