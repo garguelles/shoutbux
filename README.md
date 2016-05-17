@@ -24,21 +24,14 @@
 
 [![Dependency Status](https://david-dm.org/garguelles/fullstack-marionette.svg)](https://david-dm.org/garguelles/fullstack-marionette)
 
-
-
-> This project provides a prepared development environment based on [Gulp](http://gulpjs.com/), [Backbone](http://backbonejs.org/), [Babel](https://babeljs.io/) and [Webpack](http://webpack.github.io/). You can  use it to quickly bootstrap your web application projects. All the parts of this project template are easily replaceable.
-
-
 ### Getting Started
 
 Just [clone](github-windows://openRepo/https://github.com/garguelles/shoutbux.git) or [fork](https://github.com/garguelles/shoutbux/fork) the repo and start hacking:
 
-#### Setup Config and .env files
 ```shell
-$ git clone -o upstream https://github.com/garguelles/fullstack-marionette.git SampleApp && cd $_
-$ npm install -g gulp karma-cli     # Install Gulp task runner and Karma test runner globally
-$ npm install                       # Install Node.js components listed in ./package.json
+$ npm install
 ```
+
 Setup database connection strings
 ```shell
 $ cp ./config/database.sample.js ./config/database.js
