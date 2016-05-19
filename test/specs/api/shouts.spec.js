@@ -2,20 +2,20 @@
 
 let request = require('supertest');
 let should = require('should');
-let tokenHelper = require('../helpers/token');
-let Shout = require('../../api/models/shout');
+let tokenHelper = require('../../helpers/token');
+let Shout = require('../../../api/models/shout');
 const INVALID_SHOUT = 'If other is a function check if this function throws AssertionError on given object or return false - it will be assumed as not matched';
 const UPDATED_SHOUT = 'updated shout';
 
-describe('Shouts', function (done) {
+describe('Shouts', function() {
 
   let server = {};
   let token = '';
   let shoutId = '';
 
   beforeEach(function () {
-    delete require.cache[require.resolve('../../bin/www')];
-    server = require('../../bin/www');
+    delete require.cache[require.resolve('../../../bin/www')];
+    server = require('../../../bin/www');
   });
 
   afterEach(function (done) {

@@ -4,7 +4,7 @@
   "description": "Marionette | Express JS | Webpack | ES2015 Starter Kit",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test seed && NODE_ENV=test mocha -R spec test/api",
+    "test": "NODE_ENV=test seed && NODE_ENV=test mocha -R spec test/specs/**",
     "seed": "NODE_ENV=development seed"
   },
   "author": "gerard arguelles",

@@ -2,7 +2,7 @@
 
 let request = require('supertest');
 let should = require('should');
-let tokenHelper = require('../helpers/token')
+let tokenHelper = require('../../helpers/token')
 
 describe('User Session', function() {
 
@@ -11,8 +11,8 @@ describe('User Session', function() {
   let shoutId = '';
 
   beforeEach(function () {
-    delete require.cache[require.resolve('../../bin/www')];
-    server = require('../../bin/www');
+    delete require.cache[require.resolve('../../../bin/www')];
+    server = require('../../../bin/www');
   });
 
   afterEach(function (done) {
