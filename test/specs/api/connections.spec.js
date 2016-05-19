@@ -33,7 +33,7 @@ describe('Connections', function () {
   */
   it('responds to GET /connections/followers', function (done) {
     request(server)
-    .get('/connections/following')
+    .get('/connections/followers')
     .set('Content-Type', 'application/json')
     .set('x-access-token', token)
     .expect(200)
@@ -50,7 +50,7 @@ describe('Connections', function () {
   /*
   * Get Following
   */
-  it('responds to GET /connections/followers', function (done) {
+  it('responds to GET /connections/following', function (done) {
     request(server)
     .get('/connections/following')
     .set('Content-Type', 'application/json')
@@ -75,11 +75,12 @@ describe('Connections', function () {
     .set('Content-Type', 'application/json')
     .set('x-access-token', token)
     .send({
-      username: 'anotheruser'
+      username: 'tompaine'
     })
     .expect(200)
     .expect('Content-Type', /json/)
     .expect(function (res) {
+      console.log(res.body);
       res.body.should.be.an.Object;
       res.body.should.have.properties(['firstName', 'lastName', 'username']);
     })

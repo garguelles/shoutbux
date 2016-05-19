@@ -5,6 +5,7 @@ let passwords = require('../utils/passwords');
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
+  _id: String,
   firstName: String,
   lastName: String,
   email: {
@@ -22,10 +23,14 @@ let UserSchema = new Schema({
   following: [{ type: String, ref: 'User' }]
 });
 
+/**********************************
+* Static Methods
+*********************************/
+
 /*
- * Authenticates user based on username and hashed password
- * @param {object} params - contains username and password
- */
+* Authenticates user based on username and hashed password
+* @param {object} params - contains username and password
+*/
 UserSchema.statics.authenticate = function (params) {
   return new Promise((resolve, reject) => {
     this.findOne({ username: params.username }).lean().exec(function (err, user) {
@@ -54,44 +59,68 @@ UserSchema.statics.authenticate = function (params) {
 };
 
 /*
- * Get all users this account is following
- * @param {string} id - user ObjectId
- * @param {function} callback - callback method
- */
-UserSchema.statics.following = function(id, callback) {
-  this.find({ _id: id })
-    .select('followers')
-    .populate('followers')
-    .lean()
-    .exec((err, documents) => {
-      if (err) return callback(err, null);
-      callback(null, documents);
-    });
-}
+* Get all users this account is following
+* @param {string} id - user ObjectId
+* @param {function} callback - callback method
+*/
+UserSchema.statics.followers = function(id, callback) {
+  this.findById(id)
+  .populate('followers', 'firstName lastName')
+  .select('followers')
+  .lean()
+  .exec((err, documents) => {
+    if (err) return callback(err, null);
+    callback(null, documents);
+  });
+};
 
 /*
- * Get all users this account is following
- * @param {string} id - user ObjectId
- * @param {function} callback - callback method
- */
+* Get all users this account is following
+* @param {string} id - user ObjectId
+* @param {function} callback - callback method
+*/
 UserSchema.statics.following = function(id, callback) {
-  this.find({ _id: id })
-    .select('following')
-    .populate('following')
-    .lean()
-    .exec((err, documents) => {
-      if (err) return callback(err, null);
-      callback(null, documents);
-    });
-}
+  this.findById({ _id: id })
+  .populate('following', 'firstName lastName')
+  .select('following')
+  .lean()
+  .exec((err, documents) => {
+    if (err) return callback(err, null);
+    callback(null, documents);
+  });
+};
+
 
 /**********************************
- * Hooks
- *********************************/
+* Instance Methods
+*********************************/
+UserSchema.methods.follow = function(id, callback) {
+  this.model('User').findById(id, (err, userToFollow) => {
+    if (err) return callback(err, null);
+    this.following.push(userToFollow._id);
+    this.save((_err, doc) => {
+      if (err) return callback(err, null)
+      // return user to follow
+      callback(null, userToFollow);
+    });
+  });
+};
+
+UserSchema.methods.addFollower = function(id, callback) {
+  this.followers.push(id);
+  this.save((err, doc) => {
+    if (err) return callback(err, null);
+    callback(null, this);
+  });
+};
+
+/**********************************
+* Hooks
+*********************************/
 
 /**
- * hash password and set password salt
- */
+* hash password and set password salt
+*/
 UserSchema.pre('save', function(next) {
   passwords.hash(this.password)
   .then((result) => {

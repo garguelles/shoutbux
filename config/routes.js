@@ -24,6 +24,7 @@ class RoutesInitializer {
     this.app.use('/test', require('../api/controllers/test-controller'));
     this.app.use('/shouts', require('../api/controllers/shouts-controller'));
     this.app.use('/me', require('../api/controllers/sessions-controller'));
+    this.app.use('/connections', require('../api/controllers/connections-controller'));
     return this;
   }
 

@@ -1,8 +1,41 @@
 [{
+  "_id": "gerardarguelles",
   "firstName": "Gerard",
   "lastName": "Arguelles",
   "email": "gerard@shoutbux.com",
   "username": "gerardarguelles",
   "passwordSalt": "$2a$10$IqYyatxRJLm1vG/T6TDI0e",
-  "password": "$2a$10$IqYyatxRJLm1vG/T6TDI0e/ZUUUeExX0VUPl2waw2qjIR48OkHQuO"
+  "password": "$2a$10$IqYyatxRJLm1vG/T6TDI0e/ZUUUeExX0VUPl2waw2qjIR48OkHQuO",
+  "followers": ["tompaine"],
+  "following": ["charlesdarwin", "georgeorwell"]
+}, {
+  "_id": "tompaine",
+  "firstName": "Thomas",
+  "lastName": "Paine",
+  "email": "thomas@shoutbux.com",
+  "username": "tompaine",
+  "passwordSalt": "$2a$10$IqYyatxRJLm1vG/T6TDI0e",
+  "password": "$2a$10$IqYyatxRJLm1vG/T6TDI0e/ZUUUeExX0VUPl2waw2qjIR48OkHQuO",
+  "followers": [],
+  "following": []
+}, {
+  "_id": "charlesdarwin",
+  "firstName": "Charles",
+  "lastName": "Darwin",
+  "email": "charles@shoutbux.com",
+  "username": "charlesdarwin",
+  "passwordSalt": "$2a$10$IqYyatxRJLm1vG/T6TDI0e",
+  "password": "$2a$10$IqYyatxRJLm1vG/T6TDI0e/ZUUUeExX0VUPl2waw2qjIR48OkHQuO",
+  "followers": [],
+  "following": []
+}, {
+  "_id": "georgeorwell",
+  "firstName": "George",
+  "lastName": "Orwell",
+  "email": "george@shoutbux.com",
+  "username": "georgeorwell",
+  "passwordSalt": "$2a$10$IqYyatxRJLm1vG/T6TDI0e",
+  "password": "$2a$10$IqYyatxRJLm1vG/T6TDI0e/ZUUUeExX0VUPl2waw2qjIR48OkHQuO",
+  "followers": [],
+  "following": []
 }]
