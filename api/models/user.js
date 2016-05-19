@@ -13,10 +13,13 @@ let UserSchema = new Schema({
   },
   username: {
     type: String,
-    unique: true
+    unique: true,
+    index: true
   },
   password: String,
-  passwordSalt: String
+  passwordSalt: String,
+  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  following: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
 /*
