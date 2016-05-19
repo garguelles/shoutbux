@@ -5,7 +5,7 @@ let AuthService = require('../../api/services/auth-service');
 module.exports = {
   createAccessToken(callback) {
     let credentials = {
-      username: 'gerard@shoutbux.com',
+      username: 'gerardarguelles',
       password: 'password'
     };
 

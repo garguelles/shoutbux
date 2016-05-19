@@ -10,9 +10,9 @@ let ShoutSchema = new Schema({
     maxlength: [34, 'shout cannot exceed 34 characters']
   },
   userId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    index: true
+    type: String,
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true

@@ -11,7 +11,6 @@ sessionsController.get('/', function (request, response) {
   let sessionService = new SessionService(request.decoded);
   sessionService.getUserData((err, result) => {
     if (err) {
-      console.log('error', err);
       response.status(500).json({ error: 'something went wrong' });
     }
     else {
@@ -33,5 +32,9 @@ sessionsController.get('/shouts', function (request, response) {
     }
   });
 });
+
+/*
+ *
+ */
 
 module.exports = sessionsController;

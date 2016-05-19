@@ -53,29 +53,11 @@ describe('User Session', function() {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect(function (res) {
-        response.body.should.be.an.object;
-        response.body.should.have.property(['shouts', 'page']);
+        res.body.should.be.an.Array;
       })
       .end(function (err) {
         if (err) return done(err)
         done()
       });
   });
-
-  it('responds to GET /me/followers', function (done) {
-    request(server)
-      .get('/me/followers')
-      .set('Content-Type', 'application/json')
-      .set('x-access-token', 'application/json')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .expect(function (res) {
-        res.body.should.be.an.Array
-      })
-      .end(function (err) {
-        if (err) return done(err)
-        done(err);
-      });
-  });
-
 });

@@ -20,7 +20,7 @@ class ShoutService extends Service {
    * @param {function} callback - callback method
    */
   create(params, callback) {
-    params = _.merge(params, { userId: this.currentUser._id });
+    params = _.merge(params, { userId: this.currentUser.username });
     let shout = new Shout(params);
     shout.save((err, doc, rowsAffected) => {
       if (err) {
@@ -40,7 +40,7 @@ class ShoutService extends Service {
   update(params, id, callback) {
     Shout.findOneAndUpdate({
       _id: id,
-      userId: this.currentUser._id
+      userId: this.currentUser.username
     }, params, { runValidators: true }, (err, doc) => {
       if (err) return callback(err, null);
       callback(null, doc);

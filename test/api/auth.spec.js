@@ -37,7 +37,7 @@ describe('Authentication', function (done) {
       .set('Content-Type', 'application/json')
       .set('Accept', /application\/json/)
       .send({
-        "username": "gerard@shoutbux.com",
+        "username": "gerardarguelles",
         "password": "password"
       })
       .expect(200)

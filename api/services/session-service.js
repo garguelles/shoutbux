@@ -30,10 +30,10 @@ class SessionService extends Service {
   shouts(callback) {
     Shout.find({ userId: this.currentUser._id }).lean().exec((err, documents) => {
       if (err) return callback(err, null);
-      data.shouts = documents;
-      callback(null, data);
+      callback(null,documents);
     });
   }
+
 }
 
 module.exports = SessionService;
