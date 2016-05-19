@@ -25,8 +25,8 @@ class SessionService extends Service {
 
   /*
   * Get shouts posted by user
-  *
-  */
+  * @param {function} callback - callback method
+   */
   shouts(callback) {
     Shout.find({ userId: this.currentUser._id }).lean().exec((err, documents) => {
       if (err) return callback(err, null);

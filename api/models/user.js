@@ -18,24 +18,20 @@ let UserSchema = new Schema({
   },
   password: String,
   passwordSalt: String,
-  followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  following: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  followers: [{ type: String, ref: 'User' }],
+  following: [{ type: String, ref: 'User' }]
 });
 
 /*
- * @Description: Authenticates user based on username and hashed password
- * @Param: { credentials:object }
- * @Return: Promise
- *
+ * Authenticates user based on username and hashed password
+ * @param {object} params - contains username and password
  */
 UserSchema.statics.authenticate = function (params) {
-
   return new Promise((resolve, reject) => {
     this.findOne({ username: params.username }).lean().exec(function (err, user) {
       if (err) {
-        reject(err, null);
+        return reject(err, null);
       }
-
       if (user) {
         passwords.compare(
           params.password,
@@ -47,27 +43,54 @@ UserSchema.statics.authenticate = function (params) {
           else {
             reject("Invalid Credentials");
           }
-
         }).catch(function(err) {
           reject(err);
         });
-
       } else {
         reject("Invalid Credentials");
       }
-
     });
-
   });
-
 };
+
+/*
+ * Get all users this account is following
+ * @param {string} id - user ObjectId
+ * @param {function} callback - callback method
+ */
+UserSchema.statics.following = function(id, callback) {
+  this.find({ _id: id })
+    .select('followers')
+    .populate('followers')
+    .lean()
+    .exec((err, documents) => {
+      if (err) return callback(err, null);
+      callback(null, documents);
+    });
+}
+
+/*
+ * Get all users this account is following
+ * @param {string} id - user ObjectId
+ * @param {function} callback - callback method
+ */
+UserSchema.statics.following = function(id, callback) {
+  this.find({ _id: id })
+    .select('following')
+    .populate('following')
+    .lean()
+    .exec((err, documents) => {
+      if (err) return callback(err, null);
+      callback(null, documents);
+    });
+}
 
 /**********************************
  * Hooks
  *********************************/
 
 /**
- * @Description: hash password and set password salt
+ * hash password and set password salt
  */
 UserSchema.pre('save', function(next) {
   passwords.hash(this.password)
