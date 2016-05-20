@@ -18,13 +18,25 @@ export default ItemView.extend({
   },
 
   ui: {
-    collapse: '#navbar-collapse'
+    collapse: '#navbar-collapse',
+    logoutButton: 'a.logout'
+  },
+
+  events: {
+    'click @ui.logoutButton': 'logout'
   },
 
   templateHelpers() {
     return {
       menus: this.collection.toJSON()
     }
+  },
+
+  logout: function(e) {
+    console.log('logging out');
+    e.preventDefault();
+    localStorage.removeItem('accessToken');
+    window.location.replace('/login');
   }
 
 });
