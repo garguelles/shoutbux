@@ -7,12 +7,12 @@ describe('Authentication', function (done) {
   let server = {};
   let token = '';
 
-  beforeEach(function () {
+  before(function () {
     delete require.cache[require.resolve('../../../bin/www')];
     server = require('../../../bin/www');
   });
 
-  afterEach(function (done) {
+  after(function (done) {
     server.close(done)
   });
 

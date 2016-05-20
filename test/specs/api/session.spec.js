@@ -10,18 +10,15 @@ describe('User Session', function() {
   let token = '';
   let shoutId = '';
 
-  beforeEach(function () {
-    delete require.cache[require.resolve('../../../bin/www')];
-    server = require('../../../bin/www');
-  });
-
-  afterEach(function (done) {
+  after(function (done) {
     server.close(done)
   });
 
   before(function (done) {
+    delete require.cache[require.resolve('../../../bin/www')];
+    server = require('../../../bin/www');
     tokenHelper.createAccessToken(function (err, res) {
-      if (err) throw new Error(err);
+      if (err) return done(err);
       token = res;
       done();
     });
