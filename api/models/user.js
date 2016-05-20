@@ -94,6 +94,12 @@ UserSchema.statics.following = function(id, callback) {
 /**********************************
 * Instance Methods
 *********************************/
+
+/*
+ * follow a user
+ * @param {string} id - user id
+ * @param {function} callback - callback method
+ */
 UserSchema.methods.follow = function(id, callback) {
   this.model('User').findById(id, (err, userToFollow) => {
     if (err) return callback(err, null);
@@ -106,12 +112,53 @@ UserSchema.methods.follow = function(id, callback) {
   });
 };
 
+/*
+ * unfollow a user
+ * @param {string} id - user id
+ * @param {function} callback - callback method
+ */
+UserSchema.methods.unfollow = function(id, callback) {
+  let index = this.following.indexOf(id);
+  if (index !== -1) {
+    this.following.splice(index, 1);
+    this.save((err, doc) => {
+      if (err) return callback(err, null);
+      callback(null, doc);
+    });
+  } else {
+    callback({error: 'User not found'}, null);
+  }
+};
+
+/*
+ * add to follower list
+ * @param {string} id - user id
+ * @param {function} callback - callback method
+ */
 UserSchema.methods.addFollower = function(id, callback) {
   this.followers.push(id);
   this.save((err, doc) => {
     if (err) return callback(err, null);
     callback(null, this);
   });
+};
+
+/*
+ * remove a follower from list
+ * @param {string} id - user id
+ * @param {function} callback - callback method
+ */
+UserSchema.methods.removeFollower = function(id, callback) {
+  let index = this.followers.indexOf(id);
+  if (index !== -1) {
+    this.followers.splice(index, 1);
+    this.save((err, doc) => {
+      if (err) return callback(err, doc);
+      callback(null, doc);
+    });
+  } else {
+    callback({error: 'User not found'}, null);
+  }
 };
 
 /**********************************

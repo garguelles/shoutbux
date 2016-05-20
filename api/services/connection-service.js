@@ -39,27 +39,16 @@ class ConnectionService extends Service {
     // get current user
     User.findById(this.currentUser._id, (err, currentUser) => {
       if (err) return callback(err, null)
-      currentUser.follow(username, (_err, followedUser) => {
-        if (_err) return callback(_err, null)
+      currentUser.follow(username, (err, followedUser) => {
+        if (err) return callback(err, null)
         // add follower - this user
-        followedUser.addFollower(this.currentUser._id, (__err) => {
-          if (__err) return callback(__err, null)
+        followedUser.addFollower(this.currentUser._id, (err) => {
+          if (err) return callback(err, null)
           // return followed user
           callback(null, followedUser);
         })
       });
     });
-
-    /*
-    User.follow(username, (err, user) => {
-      if (err) return callback(err, null);
-      User.findById(username, (_err, doc) => {
-        if (_err) return callback(_err, null);
-
-      });
-      callback(null, user);
-
-    });*/
   }
 
   /*
@@ -67,7 +56,20 @@ class ConnectionService extends Service {
    * @param {string} username - username of the user you want to unfollow
    */
   unfollow(username, callback) {
-
+    // get current user
+    User.findById(this.currentUser._id, (err, currentUser) => {
+      if (err) return callback(err, null);
+      currentUser.unfollow(username, (err) => {
+        if (err) return callback(err);
+        // remove follower
+        User.findById(username, (err, unfollowedUser) => {
+          unfollowedUser.removeFollower(currentUser._id, (err) => {
+            if (err) return callback(err, null);
+            callback(null);
+          })
+        });
+      });
+    });
   }
 }
 
