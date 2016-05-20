@@ -47,4 +47,20 @@ connectionsController.post('/following', tokenVerifier, function(request, respon
   });
 });
 
+/*
+ * Unfollow a user
+ * PUT /connections/following
+ */
+connectionsController.put('/following', tokenVerifier, function(request, response) {
+  let connectionService = new ConnectionService(request.decoded);
+  connectionService.unfollow(request.body.username, (err) => {
+    if (err) {
+      response.status(500).json({ error: 'something went wrong' });
+    } else {
+      response.status(204).json();
+    }
+  });
+});
+
+
 module.exports = connectionsController;

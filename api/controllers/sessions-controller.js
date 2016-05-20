@@ -33,8 +33,4 @@ sessionsController.get('/shouts', function (request, response) {
   });
 });
 
-/*
- *
- */
-
 module.exports = sessionsController;

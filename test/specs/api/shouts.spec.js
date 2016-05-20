@@ -7,24 +7,20 @@ let Shout = require('../../../api/models/shout');
 const INVALID_SHOUT = 'If other is a function check if this function throws AssertionError on given object or return false - it will be assumed as not matched';
 const UPDATED_SHOUT = 'updated shout';
 
-describe('Shouts', function() {
-
+describe('Shouts', function(done) {
   let server = {};
   let token = '';
   let shoutId = '';
 
-  beforeEach(function () {
-    delete require.cache[require.resolve('../../../bin/www')];
-    server = require('../../../bin/www');
-  });
-
-  afterEach(function (done) {
-    server.close(done)
+  after(function (done) {
+    server.close(done);
   });
 
   before(function (done) {
+    delete require.cache[require.resolve('../../../bin/www')];
+    server = require('../../../bin/www');
     tokenHelper.createAccessToken(function (err, res) {
-      if (err) throw new Error(err);
+      if (err) return done(err);
       token = res;
       done();
     });
