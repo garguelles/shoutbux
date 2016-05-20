@@ -95,6 +95,6 @@ describe('Shouts', function(done) {
       if (err) return done(err)
       done();
     });
-  })
+  });
 
 });

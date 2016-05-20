@@ -3,11 +3,11 @@
 let request = require('supertest');
 let should = require('should')
 
-describe('Authentication', function (done) {
+describe('Authentication', function () {
   let server = {};
   let token = '';
 
-  before(function () {
+  before(function() {
     delete require.cache[require.resolve('../../../bin/www')];
     server = require('../../../bin/www');
   });
