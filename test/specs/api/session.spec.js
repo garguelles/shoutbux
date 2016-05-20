@@ -57,4 +57,20 @@ describe('User Session', function() {
         done()
       });
   });
+
+  it('responds to GET /me/timeline', function(done) {
+    request(server)
+      .get('/me/timeline')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', token)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect(function (res) {
+        res.body.should.be.an.Array;
+      })
+      .end(function (err) {
+        if (err) return done(err);
+        done();
+      })
+  })
 });
