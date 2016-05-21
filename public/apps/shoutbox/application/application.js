@@ -10,6 +10,7 @@ const App = Application.extend({
 
   initialize() {
 
+    // check if access token exists
     if (!localStorage.getItem('accessToken')) {
       window.location.replace('/login');
       return;
