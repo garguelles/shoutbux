@@ -33,7 +33,6 @@ export default ItemView.extend({
   },
 
   logout: function(e) {
-    console.log('logging out');
     e.preventDefault();
     localStorage.removeItem('accessToken');
     window.location.replace('/login');
