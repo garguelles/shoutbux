@@ -332,7 +332,7 @@
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _backbone = __webpack_require__(7);\n\nvar _view = __webpack_require__(49);\n\nvar _view2 = _interopRequireDefault(_view);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = _backbone.CollectionView.extend({\n  childView: _view2.default,\n\n  tagName: 'div',\n\n  className: 'col-md-9 timeline',\n\n  collectionEvents: {\n    'sync': 'render'\n  },\n\n  onRender: function onRender() {\n    console.log('timeline', this.collection.toJSON());\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./public/apps/shoutbox/features/index/timeline/collection-view.js\n ** module id = 48\n ** module chunks = 1\n **/\n//# sourceURL=webpack:///./public/apps/shoutbox/features/index/timeline/collection-view.js?");
+	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _backbone = __webpack_require__(7);\n\nvar _view = __webpack_require__(49);\n\nvar _view2 = _interopRequireDefault(_view);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = _backbone.CollectionView.extend({\n  childView: _view2.default,\n\n  tagName: 'div',\n\n  className: 'col-md-9 timeline',\n\n  collectionEvents: {\n    'sync': 'render'\n  }\n});\n\n/*****************\n ** WEBPACK FOOTER\n ** ./public/apps/shoutbox/features/index/timeline/collection-view.js\n ** module id = 48\n ** module chunks = 1\n **/\n//# sourceURL=webpack:///./public/apps/shoutbox/features/index/timeline/collection-view.js?");
 
 /***/ },
 /* 49 */

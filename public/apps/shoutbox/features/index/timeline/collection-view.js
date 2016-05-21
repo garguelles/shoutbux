@@ -10,9 +10,5 @@ export default CollectionView.extend({
 
   collectionEvents: {
     'sync': 'render'
-  },
-
-  onRender() {
-    console.log('timeline', this.collection.toJSON());
   }
 });
