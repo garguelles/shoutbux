@@ -78,7 +78,7 @@ UserSchema.statics.followers = function(id, callback) {
 * @param {function} callback - callback method
 */
 UserSchema.statics.following = function(id, callback) {
-  this.findById({ _id: id })
+  this.findById(id)
   .populate('following', 'firstName lastName')
   .select('following')
   .lean()
@@ -86,6 +86,25 @@ UserSchema.statics.following = function(id, callback) {
     if (err) return callback(err, null);
     callback(null, documents);
   });
+};
+
+/*
+ * Get stats (no. of followers and following)
+ * @param {string} id - user id
+ * @param {function} callback - callback method
+ */
+UserSchema.statics.stats = function(id, callback) {
+  this.findById(id)
+    .select('following followers')
+    .lean()
+    .exec((err, doc) => {
+      if (err) return callback(err, null);
+      if (!doc) return callback(null, { follower: 0, following: 0 });
+      callback(null, {
+        followers: doc.followers.length,
+        following: doc.following.length
+      });
+    });
 };
 
 

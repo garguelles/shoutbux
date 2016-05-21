@@ -37,7 +37,8 @@ module.exports.development = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'window.jQuery': 'jquery'
+      'window.jQuery': 'jquery',
+      'window.Promise': 'promise-polyfill'
     })
   ]
 };

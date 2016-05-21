@@ -17,10 +17,15 @@ class SessionService extends Service {
   getUserData(callback) {
     let data = {};
     data.user = this.currentUser;
-    Shout.find({ userId: this.currentUser._id }).lean().exec((err, documents) => {
+    Shout.find({ user: this.currentUser._id }).lean().exec((err, documents) => {
       if (err) return callback(err, null);
       data.shouts = documents;
-      callback(null, data);
+      User.stats(this.currentUser._id, (err, stats) => {
+        if (err) return callback(err, null);
+        data.stats = stats;
+        data.stats.shouts = documents.length;
+        callback(null, data);
+      });
     });
   }
 
