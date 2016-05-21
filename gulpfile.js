@@ -59,7 +59,7 @@ gulp.task('styles',function(cb) {
 
 gulp.task('styles:shoutbox', function(cb) {
 
-  let source = `${src}styles/shoutbox/main.styl`;
+  let source = `${src}apps/shoutbox/main.styl`;
   let destination = `${dist}css/`;
 
   return gulp.src(source)
@@ -106,6 +106,7 @@ gulp.task('static', function(cb) {
 gulp.task('watch', function() {
   gulp.watch(src + 'styles/**/*.styl', ['styles', 'styles:shoutbox', 'styles:login']);
   //gulp.watch(src + 'index.html', ['html']);
+  gulp.watch(src + 'apps/shoutbox/**/*.styl', ['styles:shoutbox']);
   gulp.watch(src + 'apps/**/*.js', ['scripts']);
   gulp.watch(src + 'apps/**/*.jade', ['scripts']);
 });

@@ -1,7 +1,7 @@
-import {ItemView} from 'backbone.marionette';
+import {LayoutView} from 'backbone.marionette';
 import tpl from './template';
 
-export default ItemView.extend({
+export default LayoutView.extend({
   template: tpl,
   className: 'index',
 });

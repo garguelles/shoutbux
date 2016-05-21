@@ -1,0 +1,25 @@
+.index .shoutbux-profile .display-image {
+  border-radius: 50%;
+}
+.index .shoutbux-profile .user-info {
+  padding-top: 24px;
+}
+.index .shoutbux-profile .stats {
+  margin-top: 15px;
+}
+.index .shoutbux-profile .stats .stat,
+.index .shoutbux-profile .stats .value {
+  display: block;
+}
+.index .timeline .shout {
+  padding: 4px;
+  border-bottom: 1px solid #e1e8ed;
+  margin-top: 10px;
+}
+.index .timeline span.username {
+  color: #292f33;
+  font-weight: bold;
+}
+.content__region {
+  margin-top: 90px;
+}
