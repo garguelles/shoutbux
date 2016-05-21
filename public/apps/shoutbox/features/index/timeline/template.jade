@@ -2,10 +2,14 @@
   .col-md-1
     img.img-responsive.display-image(src="http://placehold.it/60x60")
   .col-md-11
-    span.fullname gerard arguelles 
-    span.username @gerardarguelles
-    &nbsp;
+    span.fullname
+      = fullname
+      &nbsp
+    span.username @
+     = username
+     &nbsp;
     span.separator -
-    &nbsp;
+     &nbsp;
     span.date-posted May 5
-    p.shout-body This is my Shout
+    p.shout-body
+      = body

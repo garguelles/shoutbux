@@ -23,6 +23,7 @@ export default Route.extend({
 
   fetch() {
     this.userProfile.fetch();
+    this.shouts.fetch();
   },
 
   render() {

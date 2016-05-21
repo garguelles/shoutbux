@@ -4,6 +4,7 @@ let request = require('supertest');
 let should = require('should')
 
 describe('Authentication', function () {
+  this.timeout(5000)
   let server = {};
   let token = '';
 
