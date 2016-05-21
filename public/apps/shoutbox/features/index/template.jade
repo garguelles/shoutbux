@@ -2,17 +2,31 @@
   .col-md-3.shoutbux-profile
     .row
       .col-md-4
-        img.img-responsive(src="http://placehold.it/100x100")
+        img.img-responsive.display-image(src="http://placehold.it/100x100")
       .col-md-8.user-info
         a.name(href='#') Gerard Arguelles
     .row.stats
       .col-md-4
-        span Shouts 
+        span.stat Shouts 
+        span.value 100
       .col-md-4
-        span Followers 
+        span.stat Followers 
+        span.value 100
       .col-md.4
-        span Following 
+        span.stat Following 
+        span.value 100
       
-  .col-md-9
-    h2 Timeline
+  .col-md-9.timeline
+    .col-md-12.shout
+      .col-md-1
+        img.img-responsive.display-image(src="http://placehold.it/60x60")
+      .col-md-11
+        span.username gerardarguelles
+        p.shout-body This is my Shout
+    .col-md-12.shout
+      .col-md-1
+        img.img-responsive.display-image(src="http://placehold.it/60x60")
+      .col-md-11
+        span.username gerardarguelles
+        p.shout-body This is my Shout
   
