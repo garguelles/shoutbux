@@ -25,7 +25,7 @@ let ShoutSchema = new Schema({
 
 ShoutSchema.statics.timeline = function(usernames, callback) {
   this.find({ user: { $in: usernames } })
-    .populate('user', '_id username')
+    .populate('user', '_id username firstName lastName')
     .sort('createdAt')
     .exec((err, shouts) => {
       if (err) return callback(err, null);

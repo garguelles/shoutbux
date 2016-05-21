@@ -8,7 +8,11 @@ export default CollectionView.extend({
 
   className: 'col-md-9 timeline',
 
-  initialize() {
-    console.log('timeline', this.collection);
+  collectionEvents: {
+    'sync': 'render'
+  },
+
+  onRender() {
+    console.log('timeline', this.collection.toJSON());
   }
 });
