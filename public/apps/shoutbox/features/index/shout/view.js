@@ -6,6 +6,12 @@ export default ItemView.extend({
 
   className: 'post-shout',
 
+  modelEvents: {
+    'invalid': '_renderFlash',
+    'error': '_onPostError',
+    'sync': '_onShoutPosted'
+  },
+
   initialize() {
     this.characterCount = 0;
     this.maxCharacters = 34;
@@ -20,15 +26,38 @@ export default ItemView.extend({
   ui: {
     shoutTextArea: 'textarea.shout',
     postShoutButton: 'button.post-shout',
-    remainingChars: '.remaining-characters'
+    remainingChars: '.remaining-characters',
+    flash: '.alert-danger'
   },
 
   events: {
-    'keyup @ui.shoutTextArea': 'countCharacters'
+    'keyup @ui.shoutTextArea': '_countCharacters',
+    'click @ui.postShoutButton': '_postShout'
   },
 
-  countCharacters(ev) {
+  _countCharacters(ev) {
     let length = ev.target.value.length;
     this.ui.remainingChars.text(this.maxCharacters - length);
+  },
+
+  _renderFlash(model, response, options) {
+    this.ui.flash.removeClass('hidden');
+    this.ui.flash.text(response);
+  },
+
+  _postShout() {
+    let body = this.ui.shoutTextArea.val();
+    this.model.set({ body });
+    this.model.save();
+  },
+
+  _onShoutPosted() {
+    this.ui.flash.addClass('hidden');
+    this.ui.shoutTextArea.val('');
+  },
+
+  _onPostError(model, response, options) {
+    this.ui.flash.removeClass('hidden');
+    this.ui.flash.text(response.body);
   }
 });

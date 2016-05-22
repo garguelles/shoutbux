@@ -5,6 +5,7 @@ import TimelineView from './timeline/collection-view';
 import ShoutView from './shout/view';
 import Shouts from './timeline/collection';
 import UserProfile from './user-profile/model';
+import Shout from './shout/model';
 
 export default Route.extend({
 
@@ -12,6 +13,7 @@ export default Route.extend({
     this.container = options.container;
     this.userProfile = new UserProfile();
     this.shouts = new Shouts();
+    this.shout = new Shout();
 
     this.userProfileView = new UserProfileView({
       model: this.userProfile
@@ -21,7 +23,9 @@ export default Route.extend({
       collection: this.shouts
     });
 
-    this.shoutView = new ShoutView();
+    this.shoutView = new ShoutView({
+      model: this.shout
+    });
   },
 
   fetch() {
