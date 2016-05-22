@@ -35,7 +35,6 @@ describe('User Session', function() {
         res.body.should.not.be.empty();
         res.body.should.be.an.Object();
         res.body.should.have.properties(['shouts', 'user', 'stats']);
-        console.log(res.body.stats);
       })
       .end(function (err) {
         if (err) return done(err)

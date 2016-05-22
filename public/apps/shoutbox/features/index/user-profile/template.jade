@@ -1,20 +1,19 @@
-.col-md-3.shoutbux-profile
-  .row
-    .col-md-4
-      img.img-responsive.display-image(src="http://placehold.it/100x100")
-    .col-md-8.user-info
-      a.name(href='#') 
-       = fullname
-  .row.stats
-    .col-md-4
-      span.stat Shouts 
-      span.value 
-        = stats ? stats.shouts : ''
-    .col-md-4
-      span.stat Followers 
-      span.value 
-        = stats ? stats.followers : ''
-    .col-md.4
-      span.stat Following 
-      span.value
-        = stats ? stats.following : ''
+.row.shoutbux-profile
+  .col-md-4
+    img.img-responsive.display-image(src="http://placehold.it/100x100")
+  .col-md-8.user-info
+    a.name(href='#') 
+     = fullname
+.row.stats
+  .col-md-4
+    span.stat Shouts 
+    span.value 
+      = stats ? stats.shouts : ''
+  .col-md-4
+    span.stat Followers 
+    span.value 
+      = stats ? stats.followers : ''
+  .col-md.4
+    span.stat Following 
+    span.value
+      = stats ? stats.following : ''

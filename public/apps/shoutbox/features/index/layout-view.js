@@ -7,6 +7,7 @@ export default LayoutView.extend({
 
   regions: {
     'profile': '.profile__region',
-    'timeline': '.timeline__region'
+    'feeds': '.feeds__region',
+    'shout': '.shout__region'
   }
 });
