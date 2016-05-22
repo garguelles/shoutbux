@@ -13,9 +13,5 @@ export default ItemView.extend({
     return {
       fullname: `${user.firstName} ${user.lastName}`
     }
-  },
-
-  onRender() {
-    console.log(this.model.attributes);
   }
 });

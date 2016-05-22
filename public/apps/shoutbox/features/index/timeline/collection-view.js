@@ -6,7 +6,7 @@ export default CollectionView.extend({
 
   tagName: 'div',
 
-  className: 'col-md-9 timeline',
+  className: 'timeline',
 
   collectionEvents: {
     'sync': 'render'
