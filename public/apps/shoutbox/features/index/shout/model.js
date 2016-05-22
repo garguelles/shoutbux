@@ -4,6 +4,8 @@ export default Model.extend({
 
   urlRoot: '/shouts',
 
+  idAttribute: '_id',
+
   default: {
     body: ''
   },

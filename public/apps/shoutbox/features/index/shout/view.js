@@ -1,5 +1,8 @@
 import {ItemView} from 'backbone.marionette';
 import tpl from './template';
+import Radio from 'backbone.radio';
+
+const ShoutChannel = Radio.channel('shouts');
 
 export default ItemView.extend({
   template: tpl,
@@ -54,6 +57,8 @@ export default ItemView.extend({
   _onShoutPosted() {
     this.ui.flash.addClass('hidden');
     this.ui.shoutTextArea.val('');
+    ShoutChannel.trigger('shout:posted', this.model.toJSON());
+    this.model.clear();
   },
 
   _onPostError(model, response, options) {

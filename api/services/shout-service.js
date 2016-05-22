@@ -27,7 +27,13 @@ class ShoutService extends Service {
         callback(err, null);
         return;
       }
-      callback(null, doc);
+      Shout.findById(doc.id)
+        .populate('user', 'firstName lastName username')
+        .lean()
+        .exec((err, shout) => {
+          if (err) return callback(err, null);
+          callback(null, shout);
+        })
     });
   }
 
