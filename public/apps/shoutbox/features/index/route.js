@@ -29,7 +29,10 @@ export default Route.extend({
   },
 
   fetch() {
-    this.userProfile.fetch();
+    this.userProfile.fetch().then((response) => {
+      // save user id to localStorage
+      localStorage.setItem('user', response.user._id);
+    });
     this.shouts.fetch();
   },
 

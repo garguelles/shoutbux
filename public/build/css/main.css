@@ -22,9 +22,14 @@
 }
 .index .timeline span.username,
 .index .timeline span.date-posted,
-.index .timeline span.separator {
+.index .timeline span.separator,
+.index .timeline span.action {
   font-size: 12px;
   color: #8899a6;
+}
+.index .timeline span.action {
+  padding: 4px;
+  cursor: pointer;
 }
 .index .post-shout .col-md-12 {
   padding: 5px;
